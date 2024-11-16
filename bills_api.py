@@ -87,7 +87,7 @@ def get_bills():
     year = request.args.get("year", "")
     title = request.args.get("title", "").lower()
 
-    filtered_bills = bills
+    filtered_bills = [{k:v for k,v in b.items() if k not in ['embeddings', 'positives', 'negatives']} for b in bills]
 
     if house:
         filtered_bills = [b for b in filtered_bills if b["house"].lower() == house]
@@ -104,7 +104,8 @@ def get_bill(bill_id):
     bill = next((b for b in bills if b["id"] == bill_id), None)
     if not bill:
         abort(404)
-    return jsonify(bill)
+    bill_without_embeddings = {k:v for k,v in bill.items() if k != 'embeddings'}
+    return jsonify(bill_without_embeddings)
 
 
 @app.route("/api/bills/search", methods=["POST"])
@@ -114,7 +115,8 @@ def search_bills():
 
     for bill in bills:
         if query in bill["title"].lower() or query in bill["description"].lower():
-            results.append(bill)
+            bill_without_embeddings = {k:v for k,v in bill.items() if k != 'embeddings'}
+            results.append(bill_without_embeddings)
 
     return jsonify(results)
 

@@ -3,7 +3,7 @@ info:
   title: Parliamentary Bills API
   version: '1.0'
 servers:
-  - url: https://your-api-url.com
+  - url: https://ibm-hackathon-api-6497-4acd6860-11ip61w7.onporter.run
 paths:
   /api/bills:
     get:
@@ -61,6 +61,83 @@ paths:
       responses:
         '200':
           description: Search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bill'
+    /api/bills/compare:
+    post:
+      summary: Compare two bills
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                  properties:
+                    bill_id_1:
+                      type: string
+                    bill_id_2:
+                      type: string
+                  required: [bill_id_1, bill_id_2]
+                - type: object
+                  properties:
+                    query1:
+                      type: string
+                    query2:
+                      type: string
+                  required: [query1, query2]
+      responses:
+        '200':
+          description: Comparison result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bill_1_title:
+                    type: string
+                  bill_2_title:
+                    type: string
+                  comparison:
+                    type: object
+                    properties:
+                      similarities:
+                        type: array
+                        items:
+                          type: string
+                      bill_1_unique:
+                        type: array
+                        items:
+                          type: string
+                      bill_2_unique:
+                        type: array
+                        items:
+                          type: string
+                      common_themes:
+                        type: array
+                        items:
+                          type: string
+
+  /api/bills/search_similar:
+    post:
+      summary: Find similar bills
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+              required: [query]
+      responses:
+        '200':
+          description: Similar bills
           content:
             application/json:
               schema:

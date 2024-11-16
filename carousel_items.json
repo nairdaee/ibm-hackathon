@@ -1,0 +1,24 @@
+[
+    {
+        "response_type": "card",
+        "title": "THE LIVESTOCK BILL, 2024",
+        "description": "Bill establishing regulatory authorities, research organizations, and marketing boards for Kenya's livestock sector, including veterinary vaccines and disease eradication councils.",
+        "buttons": [
+            {
+                "label": "Read More",
+                "value": "https://storage.googleapis.com/newage-ai.appspot.com/pbills_text/pbill_01mx7bm2hg8qjuemg7b8n.txt"
+            }
+        ]
+    },
+    {
+        "response_type": "card",
+        "title": "The Agricultural and Livestock Extention Services Bill 2022 Senate Bill no12 of 2022",
+        "description": "Establishes agricultural and livestock extension services, defines roles of national and county governments, and outlines board functions and financial provisions.",
+        "buttons": [
+            {
+                "label": "Read More",
+                "value": "https://storage.googleapis.com/newage-ai.appspot.com/pbills_text/pbill_p4xkkik4a01ti2125squw.txt"
+            }
+        ]
+    }
+]

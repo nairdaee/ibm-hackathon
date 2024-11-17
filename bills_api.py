@@ -186,8 +186,11 @@ def get_bills():
 
 @app.route("/api/bills/<bill_id>", methods=["GET"])
 def get_bill(bill_id):
+    # Convert bill_id to integer since it comes as string from URL
+    bill_id = int(bill_id)
     bill = next((b for b in bills if b["id"] == bill_id), None)
     if not bill:
+        print("Bill wasn't found")
         abort(404)
     bill_without_embeddings = {k: v for k, v in bill.items() if k != "embeddings"}
     return jsonify(bill_without_embeddings)
